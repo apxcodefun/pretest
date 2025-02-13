@@ -14,8 +14,8 @@
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-gray-800">📚 Book Management</h1>
             <ul class="flex space-x-6 justify-center items-center">
-                <li><a href="{{route('books.index')}}" class="text-gray-600 hover:text-blue-500 transition">Home</a></li>
-                <li><a href="{{route('books.create')}}" class="text-gray-600 hover:text-blue-500 transition">Create</a></li>
+                <li><a href="{{route('books.index')}}" class="text-gray-600 hidden lg:block md:block hover:text-blue-500 transition">Home</a></li>
+                <li><a href="{{route('books.create')}}" class="text-gray-600 hidden lg:block md:block hover:text-blue-500 transition">Create</a></li>
                 <form action="{{route('logout')}}" method="POST">
                     @csrf
                     <li><button class="text-white px-4 py-2 rounded-lg transition hover:cursor bg-zinc-950">Logout</button></li>
@@ -33,7 +33,7 @@
 
     <!-- Footer -->
     <footer class="bg-white shadow-md py-4 text-center mt-auto">
-        <p class="text-gray-500 text-sm">&copy; 2025 Book Management. All rights reserved.</p>
+        <p class="text-gray-500 text-sm">&copy; {{date('Y')}} Book Management. All rights reserved.</p>
     </footer>
 </body>
 <script>

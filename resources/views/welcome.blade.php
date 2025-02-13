@@ -8,16 +8,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="flex justify-center items-center min-h-screen bg-gradient-to-r from-[#434343] via-[#000000] to-[#b8b8b8]">
-    <div class="flex flex-col justify-center items-center text-center">
-        <h1 class="font-bold text-white italic text-4xl">Welcome to Book Management App</h1>
-        <p class="text-white max-w-md">Create your book list with simple app</p>
-        <a href="{{route('books.create')}}">
-            <button class="bg-gray-500 rounded-lg py-3 px-6 mt-6 transition-transfrom duration-200 hover:scale-y-110 hover:translate-y-2">Create Now
-            </button>
-        </a>
-    </div>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md py-4">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800">📚 Manajemen Buku</h1>
+            <a href="{{ route('login') }}">
+                <button class="rounded-lg bg-zinc-900 py-3 px-6 text-white transition-transform hover:translate-x-1 duration-200 animate-pulse">
+                    Login
+                </button>
+            </a>
+        </div>
+    </nav>
 
+    <!-- Konten Utama -->
+    <main class="flex items-center justify-center px-6 py-12">
+        <div class="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row items-center md:items-start gap-6">
+            <!-- Gambar -->
+            <img src="{{ asset('images/book.png') }}" alt="Buku" class="w-40 h-40 md:w-[250px] md:h-[250px]">
+
+            <!-- Teks -->
+            <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-3">
+                <h1 class="text-2xl font-bold text-gray-800 italic">Selamat Datang di Aplikasi Sederhana Buku Manajemen</h1>
+                <p class="max-w-md text-gray-600">
+                    Aplikasi ini memungkinkan kamu mengelola koleksi bukumu sendiri dengan mudah dan aman. Silakan login untuk mengakses dan mengatur daftar bukumu secara pribadi.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow-md py-4 text-center mt-auto">
+        <p class="text-gray-500 text-sm">&copy; {{ date('Y') }} Manajemen Buku. Banda Aceh</p>
+    </footer>
 </body>
 
 </html>

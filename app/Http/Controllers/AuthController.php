@@ -32,7 +32,7 @@ class AuthController extends Controller
             return redirect()->route('books.index')->with('success', 'Logged in successfully');
         }
 
-        return back()->with('error', 'Invalid credentials');
+        return back()->with('error', 'Email/password salah');
     }
 
 

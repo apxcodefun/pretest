@@ -4,15 +4,14 @@
 <div class="w-full">
     <!-- Header Section -->
     @if(Auth::check())
-    <div class="flex items-center justify-end gap-4">
-        <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-gray-800">{{ Auth::user()->email }}</span>
-        </div>
+    <div class="flex items-center justify-end gap-4 mb-4">
+        <span class="text-sm font-semibold text-gray-800">{{ Auth::user()->email }}</span>
     </div>
     @endif
-    <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-semibold text-gray-800">Judul Buku</h2>
-        <a href="{{route('books.create')}}" class="bg-blue-500 hover:bg-blue-600 text-black px-4 py-2 rounded-lg transition mt-2">
+
+    <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+        <h2 class="text-2xl font-semibold text-gray-800">Daftar Buku</h2>
+        <a href="{{ route('books.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition w-full md:w-auto text-center">
             Tambah Buku Baru
         </a>
     </div>
@@ -20,58 +19,37 @@
     @if ($books->isEmpty())
     <p class="text-gray-500 text-center py-6">Anda belum memasukkan buku.</p>
     @else
-    <!-- Table Section -->
-    <div class="overflow-x-auto rounded-lg border border-gray-200">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-                <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Penulis</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Penerbit</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tahun Terbit</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Detail</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                @foreach($books as $key => $book)
-                <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{$key + 1}}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {{$book->judul}}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{$book->penulis}}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{$book->penerbit}}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{$book->tahun_terbit}}
-                    </td>
-                    <td class="px-6 my-2 py-4 whitespace-nowrap text-sm">
-                        <a href="{{route('books.show',$book->id)}}" class=" text-white hover:cursor-pointer bg-zinc-700 rounded-md py-2 px-5">Details Buku</a>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                        <a href="{{route('books.edit', $book->id)}}"
-                            class="text-blue-600 hover:text-blue-900">Edit</a>
-                        <form action="{{route('books.destroy', $book->id)}}" method="POST" class="inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="text-red-600 hover:text-red-900"
-                                onclick="return confirm('Are you sure you want to delete this book?')">
-                                Delete
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <!-- Section Buku -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach($books as $book)
+        <div class="bg-zinc-800 text-white shadow-md rounded-lg p-4 flex flex-col">
+            <!-- Bagian atas -->
+            <div class="flex-grow">
+                <h3 class="text-lg font-semibold">{{ $book->judul }}</h3>
+                <p class="text-sm ">Penulis: {{ $book->penulis }}</p>
+                <p class="text-sm ">Penerbit: {{ $book->penerbit }}</p>
+                <p class="text-sm ">Tahun Terbit: {{ $book->tahun_terbit }}</p>
+            </div>
+
+            <!-- Tombol Aksi -->
+            <div class="mt-4 flex flex-wrap justify-between gap-2">
+                <a href="{{ route('books.show', $book->id) }}" class="bg-zinc-700 hover:bg-zinc-800 text-white px-4 py-2 rounded-md text-sm w-full sm:w-auto text-center">
+                    Details
+                </a>
+                <a href="{{ route('books.edit', $book->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm w-full sm:w-auto text-center">
+                    Edit
+                </a>
+                <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="w-full sm:w-auto">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm w-full sm:w-auto"
+                        onclick="return confirm('Are you sure you want to delete this book?')">
+                        Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+        @endforeach
     </div>
     @endif
 </div>

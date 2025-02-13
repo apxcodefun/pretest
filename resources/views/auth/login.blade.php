@@ -10,8 +10,8 @@
 
 <body class="flex items-center justify-center min-h-screen bg-gray-100 p-6">
     <div class="bg-white shadow-lg rounded-2xl p-8 max-w-sm w-full">
-        <h2 class="text-2xl font-bold text-gray-800 text-center">Welcome Back</h2>
-        <p class="text-gray-500 text-center mb-6">Sign in to your account</p>
+        <h2 class="text-2xl font-bold text-gray-800 text-center">Selamat Datang !</h2>
+        <p class="text-gray-500 text-center mb-6">Silahkan masukkan akun anda yang telah terdaftar</p>
         @if ($errors->any())
         <div class="bg-red-100 text-red-600 p-3 rounded-lg text-sm mb-4">
             @foreach ($errors->all() as $error)
@@ -40,7 +40,7 @@
 
                     <span id="togglePassword"
                         class="absolute inset-y-0 right-3 flex items-center h-full cursor-pointer text-gray-500">
-                        Show
+                        Lihat
                     </span>
                 </div>
 
@@ -48,15 +48,15 @@
                 <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">Sign In</button>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">Login</button>
         </form>
         @if(session('error'))
-        <div class="bg-red-100 text-red-600 p-3 rounded-lg text-sm mb-4">
+        <div class="bg-red-100 text-red-600 p-3 rounded-lg text-sm mb-4 mt-2">
             {{ session('error') }}
         </div>
         @endif
         <p class="text-center text-gray-500 text-sm mt-4">
-            Don&apos;t have an account? <a href="{{route('register')}}" class="text-blue-500 hover:underline">Sign Up</a>
+            Belum punya akun ? <a href="{{route('register')}}" class="text-blue-500 hover:underline">Daftar</a>
         </p>
     </div>
 </body>
@@ -66,7 +66,7 @@
         let isPassword = passwordInput.type === 'password';
 
         passwordInput.type = isPassword ? 'text' : 'password';
-        this.textContent = isPassword ? 'Hide' : 'Show';
+        this.textContent = isPassword ? 'Hilang' : 'Lihat';
     })
 </script>
 
