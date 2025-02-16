@@ -33,12 +33,28 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi input termasuk gambar
+        $request->validate([
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required|numeric',
+            'deskripsi' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048' // Validasi gambar
+        ]);
+
+        // Simpan gambar ke folder 'uploads' dalam 'public'
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('uploads'), $imageName);
+
+        // Simpan data ke database
         $book = new Book();
         $book->judul = $request->judul;
         $book->penulis = $request->penulis;
         $book->penerbit = $request->penerbit;
         $book->tahun_terbit = $request->tahun_terbit;
         $book->deskripsi = $request->deskripsi;
+        $book->gambar = 'uploads/' . $imageName; // Simpan path gambar
         $book->user_id = Auth::id();
         $book->save();
 
