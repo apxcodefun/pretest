@@ -3,6 +3,14 @@
 @section('content')
 <div class="w-full">
     <!-- Header Section -->
+
+    @if(session('error'))
+    <div class="bg-red-500 text-white p-3 rounded mb-4">
+        {{session('error')}}
+    </div>
+    @endif
+
+
     @if(Auth::check())
     <div class="flex items-center justify-end gap-4 mb-4">
         <span class="text-sm font-semibold text-gray-800">{{ Auth::user()->email }}</span>
