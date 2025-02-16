@@ -18,7 +18,7 @@
 
     <!-- Form -->
     <div class="bg-gray-800 text-white rounded-xl shadow-lg p-6">
-        <form action="{{ route('books.store') }}" method="POST" class="space-y-4">
+        <form action="{{ route('books.store') }}" method="POST" class="space-y-4" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="user_id" value="{{ auth()->id() }}">
 
@@ -46,8 +46,12 @@
                 <label for="deskripsi" class="text-sm font-semibold text-gray-300">Deskripsi</label>
                 <textarea name="deskripsi" id="deskripsi" rows="4" class="w-full px-3 py-2 mt-1 rounded-md border border-gray-600 bg-gray-700 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Deskripsi Bukunya"></textarea>
             </div>
+            <div class="mb-4">
+                <label for="sampul" class="block text-sm font-semibold text-gray-300 mb-2">Sampul</label>
+                <input type="file" name="image" id="sampul" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+            </div>
 
-            <!-- Action Buttons -->
+
             <div class="flex justify-end pt-4 border-t border-gray-600 gap-2">
                 <button type="reset" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
                     Reset

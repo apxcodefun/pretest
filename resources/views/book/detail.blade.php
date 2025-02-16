@@ -34,6 +34,10 @@
             <label for="deskripsi" class="text-sm font-semibold text-gray-300">Deskripsi</label>
             <textarea name="deskripsi" id="deskripsi" rows="4" class="w-full px-3 py-2 mt-1 rounded-md border border-gray-600 bg-gray-700 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Deskripsi Bukunya" disabled>{{$book->judul}}</textarea>
         </div>
+        <div class="flex justify-start">
+            <img src="{{ asset($book->gambar) }}" alt="Cover Buku" class="w-40 h-60 object-cover rounded-lg shadow-lg">
+        </div>
+
 
     </div>
 

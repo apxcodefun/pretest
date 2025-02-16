@@ -16,6 +16,9 @@
             <ul class="flex space-x-6 justify-center items-center">
                 <li><a href="{{route('books.index')}}" class="text-gray-600 hidden lg:block md:block hover:text-blue-500 transition">Home</a></li>
                 <li><a href="{{route('books.create')}}" class="text-gray-600 hidden lg:block md:block hover:text-blue-500 transition">Create</a></li>
+                @if(Auth::user() && Auth::user()->role_id == 1)
+                <li><a href="" class="text-gray-600 hover:text-blue-500 transition">Daftar User</a></li>
+                @endif
                 <form action="{{route('logout')}}" method="POST">
                     @csrf
                     <li><button class="text-white px-4 py-2 rounded-lg transition hover:cursor bg-zinc-950">Logout</button></li>

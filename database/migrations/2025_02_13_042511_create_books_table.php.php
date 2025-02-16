@@ -19,6 +19,7 @@ return new class extends Migration
             $table->year("tahun_terbit");
             $table->string("deskripsi");
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->string('gambar');
 
             $table->timestamps();
         });
